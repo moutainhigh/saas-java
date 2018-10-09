@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            objectClass="org.eclipse.jdt.core.IJavaElement"
+            id="com.zenmind.plugin.contribution1">
+         <menu
+               label="代码-java目录"
+               path="additions"
+               id="com.zenmind.plugin.menu1">
+            <separator name="group1"></separator>
+         </menu>
+         <action
+               label="bs 单目录/文件"
+               class="com.zenmind.devplugin.action.BsAction"
+               menubarPath="com.zenmind.plugin.menu1/group1"
+               enablesFor="1"
+               id="com.zenmind.plugin.genBsOneFolderAction">
+         </action>
+          <action
+               label="apidata 单目录/文件"
+               class="com.zenmind.devplugin.action.ApiDataAction"
+               menubarPath="com.zenmind.plugin.menu1/group1"
+               enablesFor="1"
+               id="com.zenmind.plugin.genApiDataOneFolderAction">
+         </action>
+          <action
+               label="IOS 单目录/文件"
+               class="com.zenmind.devplugin.action.IOSDataAction"
+               menubarPath="com.zenmind.plugin.menu1/group1"
+               enablesFor="1"
+               id="com.zenmind.plugin.genIOSDataOneFolderAction">
+         </action>
+      </objectContribution>
+   </extension>
+
+</plugin>

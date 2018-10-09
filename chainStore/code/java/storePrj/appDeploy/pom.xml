@@ -1,0 +1,356 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.zm</groupId>
+	<artifactId>appDeploy</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+
+	<properties>
+		<!-- <dir.deploy.base>/F:/honkon/zhimeitimes/docker-compose</dir.deploy.base> -->
+		<dir.deploy.base>deploy</dir.deploy.base>
+		
+		<dir.deploy.docker>${dir.deploy.base}/docker</dir.deploy.docker>
+		<dir.deploy.config>${dir.deploy.base}/config/java</dir.deploy.config>
+		
+		<dir.deploy.compose>deploy/compose</dir.deploy.compose>
+		<dir.deploy.nginx>deploy/nginx</dir.deploy.nginx>
+		<dir.deploy.redis>deploy/redis</dir.deploy.redis>
+		<dir.deploy.mongo>deploy/mongo</dir.deploy.mongo>
+		<dir.deploy.rabbitmq>deploy/rabbitmq</dir.deploy.rabbitmq>
+		
+		<prj.chainMS>chainMS</prj.chainMS>
+		<prj.customerMS>customerMS</prj.customerMS>
+		<prj.orderMS>orderMS</prj.orderMS>
+		<prj.storeManagerMS>storeManagerMS</prj.storeManagerMS>
+		<prj.storeMS>storeMS</prj.storeMS>
+		<prj.payMS>payMS</prj.payMS>
+		
+		<prj.configServer>configServer</prj.configServer>
+		<prj.eurekaServer>eurekaServer</prj.eurekaServer>
+		<prj.gatewayServer>gatewayServer</prj.gatewayServer>
+		<prj.storeFileMS>storeFileMS</prj.storeFileMS>
+		<prj.loggerServer>loggerServer</prj.loggerServer>
+		<prj.thirdPartyServer>thirdPartyServer</prj.thirdPartyServer>
+		
+		<prj.configServer.dir>../comPrj/${prj.configServer}</prj.configServer.dir>
+		<prj.eurekaServer.dir>../comPrj/${prj.eurekaServer}</prj.eurekaServer.dir>
+		<prj.gatewayServer.dir>../comPrj/${prj.gatewayServer}</prj.gatewayServer.dir>
+		<prj.storeFileMS.dir>../comPrj/${prj.storeFileMS}</prj.storeFileMS.dir>
+		<prj.loggerServer.dir>../comPrj/${prj.loggerServer}</prj.loggerServer.dir>
+		<prj.thirdPartyServer.dir>../comPrj/${prj.thirdPartyServer}</prj.thirdPartyServer.dir>
+	</properties>
+
+	<!-- 待聚合模块 -->
+	<modules>
+		<module>../${prj.chainMS}</module>
+		<module>../${prj.customerMS}</module>
+		<module>../${prj.orderMS}</module>
+		<module>../${prj.storeManagerMS}</module>
+		<module>../${prj.storeMS}</module>
+		<module>../${prj.payMS}</module>
+		
+		<module>../${prj.configServer.dir}</module>
+		<module>../${prj.eurekaServer.dir}</module>
+		<module>../${prj.gatewayServer.dir}</module>
+		<module>../${prj.storeFileMS.dir}</module>
+		<module>../${prj.loggerServer.dir}</module>
+		<module>../${prj.thirdPartyServer.dir}</module>
+	</modules>
+
+	<distributionManagement>
+		<repository>
+			<id>releases</id>
+			<name>Nexus Release Repository</name>
+			<url>http://${nexus.address}/nexus/content/repositories/releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshots</id>
+			<name>Nexus Snapshot Repository</name>
+			<url>http://${nexus.address}/nexus/content/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.8</version>
+				<executions>
+					<execution>
+						<id>copy</id>
+						<phase>package</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<tasks>
+								<echo message="copy docker files start ++++++++++++++++++++++++++++++++++++++++." />
+								<copy flatten="true" todir="${dir.deploy.docker}\${prj.chainMS}\init">
+									<fileset dir="../${prj.chainMS}\target\">
+										<include name="*SNAPSHOT.jar" />
+										<include name="docker/*" />
+									</fileset>
+								</copy>
+								<copy flatten="true" todir="${dir.deploy.docker}\${prj.customerMS}\init">
+									<fileset dir="../${prj.customerMS}\target\">
+										<include name="*SNAPSHOT.jar" />
+										<include name="docker/*" />
+									</fileset>
+								</copy>
+								<copy flatten="true" todir="${dir.deploy.docker}\${prj.orderMS}\init">
+									<fileset dir="../${prj.orderMS}\target\">
+										<include name="*SNAPSHOT.jar" />
+										<include name="docker/*" />
+									</fileset>
+								</copy>
+								<copy flatten="true" todir="${dir.deploy.docker}\${prj.storeMS}\init">
+									<fileset dir="../${prj.storeMS}\target\">
+										<include name="*SNAPSHOT.jar" />
+										<include name="docker/*" />
+									</fileset>
+								</copy>
+								<copy flatten="true" todir="${dir.deploy.docker}\${prj.storeManagerMS}\init">
+									<fileset dir="../${prj.storeManagerMS}\target\">
+										<include name="*SNAPSHOT.jar" />
+										<include name="docker/*" />
+									</fileset>
+								</copy>
+								<copy flatten="true" todir="${dir.deploy.docker}\${prj.payMS}\init">
+									<fileset dir="../${prj.payMS}\target\">
+										<include name="*SNAPSHOT.jar" />
+										<include name="docker/*" />
+									</fileset>
+								</copy>
+								
+								<copy flatten="true" todir="${dir.deploy.docker}\${prj.configServer}\init">
+									<fileset dir="../${prj.configServer.dir}\target\">
+										<include name="*SNAPSHOT.jar" />
+										<include name="docker/*" />
+									</fileset>
+								</copy>
+								<copy flatten="true" todir="${dir.deploy.docker}\${prj.eurekaServer}\init">
+									<fileset dir="../${prj.eurekaServer.dir}\target\">
+										<include name="*SNAPSHOT.jar" />
+										<include name="docker/*" />
+									</fileset>
+								</copy>
+								<copy flatten="true" todir="${dir.deploy.docker}\${prj.gatewayServer}\init">
+									<fileset dir="../${prj.gatewayServer.dir}\target\">
+										<include name="*SNAPSHOT.jar" />
+										<include name="docker/*" />
+									</fileset>
+								</copy>
+								<copy flatten="true" todir="${dir.deploy.docker}\${prj.storeFileMS}\init">
+									<fileset dir="../${prj.storeFileMS.dir}\target\">
+										<include name="*SNAPSHOT.jar" />
+										<include name="docker/*" />
+									</fileset>
+								</copy>
+								<copy flatten="true" todir="${dir.deploy.docker}\${prj.loggerServer}\init">
+									<fileset dir="../${prj.loggerServer.dir}\target\">
+										<include name="*SNAPSHOT.jar" />
+										<include name="docker/*" />
+									</fileset>
+								</copy>
+								<copy flatten="true" todir="${dir.deploy.docker}\${prj.thirdPartyServer}\init">
+									<fileset dir="../${prj.thirdPartyServer.dir}\target\">
+										<include name="*SNAPSHOT.jar" />
+										<include name="docker/*" />
+									</fileset>
+								</copy>
+								<echo message="copy docker files end ++++++++++++++++++++++++++++++++++++++++." />
+
+								<echo message="copy config files start ++++++++++++++++++++++++++++++++++++++++." />
+								<copy flatten="true" todir="${dir.deploy.config}">
+									<fileset dir="../${prj.chainMS}\target\">
+										<include name="**/${prj.chainMS}-prd.properties" />
+									</fileset>
+								</copy>
+								<copy flatten="true" todir="${dir.deploy.config}">
+									<fileset dir="../${prj.customerMS}\target\">
+										<include name="**/${prj.customerMS}-prd.properties" />
+									</fileset>
+								</copy>
+								<copy flatten="true" todir="${dir.deploy.config}">
+									<fileset dir="../${prj.orderMS}\target\">
+										<include name="**/${prj.orderMS}-prd.properties" />
+									</fileset>
+								</copy>
+								<copy flatten="true" todir="${dir.deploy.config}">
+									<fileset dir="../${prj.storeMS}\target\">
+										<include name="**/${prj.storeMS}-prd.properties" />
+									</fileset>
+								</copy>
+								<copy flatten="true" todir="${dir.deploy.config}">
+									<fileset dir="../${prj.storeManagerMS}\target\">
+										<include name="**/${prj.storeManagerMS}-prd.properties" />
+									</fileset>
+								</copy>
+								<copy flatten="true" todir="${dir.deploy.config}">
+									<fileset dir="../${prj.payMS}\target\">
+										<include name="**/${prj.payMS}-prd.properties" />
+									</fileset>
+								</copy>
+								
+								<copy flatten="true" todir="${dir.deploy.config}">
+									<fileset dir="../${prj.gatewayServer.dir}\target\">
+										<include name="**/${prj.gatewayServer}-prd.properties" />
+									</fileset>
+								</copy>
+								<copy flatten="true" todir="${dir.deploy.config}">
+									<fileset dir="../${prj.loggerServer.dir}\target\">
+										<include name="**/${prj.loggerServer}-prd.properties" />
+									</fileset>
+								</copy>
+								<copy flatten="true" todir="${dir.deploy.config}">
+									<fileset dir="../${prj.storeFileMS.dir}\target\">
+										<include name="**/${prj.storeFileMS}-prd.properties" />
+									</fileset>
+								</copy>
+								<copy flatten="true" todir="${dir.deploy.config}">
+									<fileset dir="../${prj.thirdPartyServer.dir}\target\">
+										<include name="**/${prj.thirdPartyServer}-prd.properties" />
+									</fileset>
+								</copy>
+								<echo message="copy config files end ++++++++++++++++++++++++++++++++++++++++." />
+								
+								<echo message="copy libs start ++++++++++++++++++++++++++++++++++++++++." />
+								<copy flatten="true" todir="${dir.deploy.docker}\${prj.chainMS}\init\libs">
+									<fileset dir="../${prj.chainMS}\target\">
+										<include name="libs/*" />
+									</fileset>
+								</copy>
+								<copy flatten="true" todir="${dir.deploy.docker}\${prj.customerMS}\init\libs">
+									<fileset dir="../${prj.customerMS}\target\">
+										<include name="libs/*" />
+									</fileset>
+								</copy>
+								<copy flatten="true" todir="${dir.deploy.docker}\${prj.orderMS}\init\libs">
+									<fileset dir="../${prj.orderMS}\target\">
+										<include name="libs/*" />
+									</fileset>
+								</copy>
+								<copy flatten="true" todir="${dir.deploy.docker}\${prj.storeMS}\init\libs">
+									<fileset dir="../${prj.storeMS}\target\">
+										<include name="libs/*" />
+									</fileset>
+								</copy>
+								<copy flatten="true" todir="${dir.deploy.docker}\${prj.storeManagerMS}\init\libs">
+									<fileset dir="../${prj.storeManagerMS}\target\">
+										<include name="libs/*" />
+									</fileset>
+								</copy>
+								<copy flatten="true" todir="${dir.deploy.docker}\${prj.payMS}\init\libs">
+									<fileset dir="../${prj.payMS}\target\">
+										<include name="libs/*" />
+									</fileset>
+								</copy>
+								
+								<copy flatten="true" todir="${dir.deploy.docker}\${prj.storeFileMS}\init\libs">
+									<fileset dir="../${prj.storeFileMS.dir}\target\">
+										<include name="libs/*" />
+									</fileset>
+								</copy>
+								<copy flatten="true" todir="${dir.deploy.docker}\${prj.thirdPartyServer}\init\libs">
+									<fileset dir="../${prj.thirdPartyServer.dir}\target\">
+										<include name="libs/*" />
+									</fileset>
+								</copy>
+								<copy flatten="true" todir="${dir.deploy.docker}\${prj.loggerServer}\init\libs">
+									<fileset dir="../${prj.loggerServer.dir}\target\">
+										<include name="libs/*" />
+									</fileset>
+								</copy>
+								<copy flatten="true" todir="${dir.deploy.docker}\${prj.configServer}\init\libs">
+									<fileset dir="../${prj.configServer.dir}\target\">
+										<include name="libs/*" />
+									</fileset>
+								</copy>
+								<copy flatten="true" todir="${dir.deploy.docker}\${prj.eurekaServer}\init\libs">
+									<fileset dir="../${prj.eurekaServer.dir}\target\">
+										<include name="libs/*" />
+									</fileset>
+								</copy>
+								<copy flatten="true" todir="${dir.deploy.docker}\${prj.gatewayServer}\init\libs">
+									<fileset dir="../${prj.gatewayServer.dir}\target\">
+										<include name="libs/*" />
+									</fileset>
+								</copy>
+								<echo message="copy libs end ++++++++++++++++++++++++++++++++++++++++." />
+								
+								<echo message="copy dir start ++++++++++++++++++++++++++++++++++++++++." />
+								<copy todir="${dir.deploy.base}">
+									<fileset dir="${dir.deploy.compose}">
+										<include name="**/*" />
+									</fileset>
+								</copy>
+								<copy todir="${dir.deploy.docker}">
+									<fileset dir="${dir.deploy.nginx}">
+										<include name="**/*" />
+									</fileset>
+								</copy>
+								<copy todir="${dir.deploy.docker}">
+									<fileset dir="${dir.deploy.redis}">
+										<include name="**/*" />
+									</fileset>
+								</copy>
+								<copy todir="${dir.deploy.docker}">
+									<fileset dir="${dir.deploy.mongo}">
+										<include name="**/*" />
+									</fileset>
+								</copy>
+								<copy todir="${dir.deploy.docker}">
+									<fileset dir="${dir.deploy.rabbitmq}">
+										<include name="**/*" />
+									</fileset>
+								</copy>
+								<echo message="copy dir end ++++++++++++++++++++++++++++++++++++++++." />
+							</tasks>
+						</configuration>
+					</execution>
+					<execution>
+						<id>delete</id>
+						<phase>clean</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<tasks>
+								<echo message="delete deploy files start ++++++++++++++++++++++++++++++++++++++++." />
+								<delete>
+									<fileset dir="${dir.deploy.docker}">
+										<include name="**/*.jar" />
+										<include name="**/*Dockerfile" />
+										<include name="**/*.sh" />
+										<include name="**/*.conf" />
+										<include name="**/*.cfg" />
+										<include name="**/*.sql" />
+										<include name="**/*.yml" />
+										<include name="**/*.options" />
+										<include name="**/*.properties" />
+										<include name="**/*.ttf" />
+									</fileset>
+								</delete>
+								<echo message="delete deploy files end ++++++++++++++++++++++++++++++++++++++++." />
+								
+								<echo message="delete config files start ++++++++++++++++++++++++++++++++++++++++." />
+								<delete>
+									<fileset dir="${dir.deploy.config}">
+										<include name="**/*-prd.properties" />
+									</fileset>
+								</delete>
+								<echo message="delete config files end ++++++++++++++++++++++++++++++++++++++++." />
+							</tasks>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+		</plugins>
+
+	</build>
+
+
+</project>

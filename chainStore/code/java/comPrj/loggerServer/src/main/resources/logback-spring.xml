@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration scan="true" scanPeriod="10 seconds">
+
+	<include resource="org/springframework/boot/logging/logback/defaults.xml" />
+	<property name="LOGMS_FILE" value="storelogMS" />
+	<property name="STOREMS_FILE" value="storeMS" />
+	<property name="CUSTOMERMS_FILE" value="customerMS" />
+	<property name="STOREFILEMS_FILE" value="storeFileMS" />
+	<property name="ORDERMS_FILE" value="orderMS" />
+	<property name="STOREWEB_FILE" value="storeWeb" />
+	<property name="THIRDPARTYMS_FILE" value="thirdPartyMS" />
+	<property name="STOREAPP_FILE" value="storeApp" />
+	<property name="CUSTOMERAPP_FILE" value="customerApp" />
+	<property name="STOREMANAGERMS_FILE" value="storeManagerMS" />
+
+	<include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+	<appender name="LOGMS_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/${LOGMS_FILE}.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>logs/${LOGMS_FILE}-%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<!-- each file should be at most 100MB, keep 60 days worth of history, 
+				but at most 5GB -->
+			<maxFileSize>100MB</maxFileSize>
+			<maxHistory>14</maxHistory>
+			<totalSizeCap>5GB</totalSizeCap>
+		</rollingPolicy>
+		<encoder>
+			<pattern>${FILE_LOG_PATTERN}</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="STOREMS_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/${STOREMS_FILE}.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>logs/${STOREMS_FILE}-%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<!-- each file should be at most 100MB, keep 60 days worth of history, 
+				but at most 5GB -->
+			<maxFileSize>100MB</maxFileSize>
+			<maxHistory>14</maxHistory>
+			<totalSizeCap>5GB</totalSizeCap>
+		</rollingPolicy>
+		<encoder>
+			<pattern>${FILE_LOG_PATTERN}</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="CUSTOMERMS_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/${CUSTOMERMS_FILE}.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>logs/${CUSTOMERMS_FILE}-%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<!-- each file should be at most 100MB, keep 60 days worth of history, 
+				but at most 5GB -->
+			<maxFileSize>100MB</maxFileSize>
+			<maxHistory>14</maxHistory>
+			<totalSizeCap>5GB</totalSizeCap>
+		</rollingPolicy>
+		<encoder>
+			<pattern>${FILE_LOG_PATTERN}</pattern>
+		</encoder>
+	</appender>
+	
+	<appender name="STOREFILEMS_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/${STOREFILEMS_FILE}.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>logs/${STOREFILEMS_FILE}-%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<!-- each file should be at most 100MB, keep 60 days worth of history, 
+				but at most 5GB -->
+			<maxFileSize>100MB</maxFileSize>
+			<maxHistory>14</maxHistory>
+			<totalSizeCap>5GB</totalSizeCap>
+		</rollingPolicy>
+		<encoder>
+			<pattern>${FILE_LOG_PATTERN}</pattern>
+		</encoder>
+	</appender>
+	
+	<appender name="ORDERMS_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/${ORDERMS_FILE}.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>logs/${ORDERMS_FILE}-%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<!-- each file should be at most 100MB, keep 60 days worth of history, 
+				but at most 5GB -->
+			<maxFileSize>100MB</maxFileSize>
+			<maxHistory>14</maxHistory>
+			<totalSizeCap>5GB</totalSizeCap>
+		</rollingPolicy>
+		<encoder>
+			<pattern>${FILE_LOG_PATTERN}</pattern>
+		</encoder>
+	</appender>
+	
+	<appender name="STOREWEB_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/${STOREWEB_FILE}.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>logs/${STOREWEB_FILE}-%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<!-- each file should be at most 100MB, keep 60 days worth of history, 
+				but at most 5GB -->
+			<maxFileSize>100MB</maxFileSize>
+			<maxHistory>14</maxHistory>
+			<totalSizeCap>5GB</totalSizeCap>
+		</rollingPolicy>
+		<encoder>
+			<pattern>${FILE_LOG_PATTERN}</pattern>
+		</encoder>
+	</appender>
+	
+	<appender name="THIRDPARTYMS_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/${THIRDPARTYMS_FILE}.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>logs/${THIRDPARTYMS_FILE}-%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<!-- each file should be at most 100MB, keep 60 days worth of history, 
+				but at most 5GB -->
+			<maxFileSize>100MB</maxFileSize>
+			<maxHistory>14</maxHistory>
+			<totalSizeCap>5GB</totalSizeCap>
+		</rollingPolicy>
+		<encoder>
+			<pattern>${FILE_LOG_PATTERN}</pattern>
+		</encoder>
+	</appender>
+	
+	<appender name="STOREAPP_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/${STOREAPP_FILE}.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>logs/${STOREAPP_FILE}-%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<!-- each file should be at most 100MB, keep 60 days worth of history, 
+				but at most 5GB -->
+			<maxFileSize>100MB</maxFileSize>
+			<maxHistory>14</maxHistory>
+			<totalSizeCap>5GB</totalSizeCap>
+		</rollingPolicy>
+		<encoder>
+			<pattern>${FILE_LOG_PATTERN}</pattern>
+		</encoder>
+	</appender>
+	
+	<appender name="CUSTOMERAPP_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/${CUSTOMERAPP_FILE}.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>logs/${CUSTOMERAPP_FILE}-%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<!-- each file should be at most 100MB, keep 60 days worth of history, 
+				but at most 5GB -->
+			<maxFileSize>100MB</maxFileSize>
+			<maxHistory>14</maxHistory>
+			<totalSizeCap>5GB</totalSizeCap>
+		</rollingPolicy>
+		<encoder>
+			<pattern>${FILE_LOG_PATTERN}</pattern>
+		</encoder>
+	</appender>
+	
+	<appender name="STOREMANAGERMS_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/${STOREMANAGERMS_FILE}.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>logs/${STOREMANAGERMS_FILE}-%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<!-- each file should be at most 100MB, keep 60 days worth of history, 
+				but at most 5GB -->
+			<maxFileSize>100MB</maxFileSize>
+			<maxHistory>14</maxHistory>
+			<totalSizeCap>5GB</totalSizeCap>
+		</rollingPolicy>
+		<encoder>
+			<pattern>${FILE_LOG_PATTERN}</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="com.hq.storeLog.logHandle.storems" level="INFO" additivity="false">
+		<appender-ref ref="STOREMS_FILE" />
+	</logger>
+
+	<logger name="com.hq.storeLog.logHandle.customer" level="INFO" additivity="false">
+		<appender-ref ref="CUSTOMERMS_FILE" />
+	</logger>
+	
+	<logger name="com.hq.storeLog.logHandle.storefile" level="INFO" additivity="false">
+		<appender-ref ref="STOREFILEMS_FILE" />
+	</logger>
+
+	<logger name="com.hq.storeLog.logHandle.order" level="INFO" additivity="false">
+		<appender-ref ref="ORDERMS_FILE" />
+	</logger>
+	
+	<logger name="com.hq.storeLog.logHandle.storeweb" level="INFO" additivity="false">
+		<appender-ref ref="STOREWEB_FILE" />
+	</logger>
+
+	<logger name="com.hq.storeLog.logHandle.thirdparty" level="INFO" additivity="false">
+		<appender-ref ref="THIRDPARTYMS_FILE" />
+	</logger>
+	
+	<logger name="com.hq.storeLog.logHandle.storeApp" level="INFO" additivity="false">
+		<appender-ref ref="STOREAPP_FILE" />
+	</logger>
+	
+	<logger name="com.hq.storeLog.logHandle.customerApp" level="INFO" additivity="false">
+		<appender-ref ref="CUSTOMERAPP_FILE" />
+	</logger>
+	
+	<logger name="com.hq.storeLog.logHandle.storeManager" level="INFO" additivity="false">
+		<appender-ref ref="STOREMANAGERMS_FILE" />
+	</logger>
+
+	<root level="INFO">
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="LOGMS_FILE" />
+	</root>
+</configuration>

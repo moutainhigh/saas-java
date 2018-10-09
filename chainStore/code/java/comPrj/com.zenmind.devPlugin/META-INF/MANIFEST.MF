@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: DevPlugin
+Bundle-SymbolicName: com.zenmind.devPlugin;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: com.zenmind.devplugin.Activator
+Bundle-Vendor: ZENMIND
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Automatic-Module-Name: com.zenmind.devPlugin
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .,
+ libs/zmCodeGenBase-0.0.1-SNAPSHOT-jar-with-dependencies.jar

@@ -1,0 +1,46 @@
+package com.hq.storeMS.service.order.bs.updateLeaguerInfo;
+
+import java.util.List;
+
+import com.hq.orderRestClient.service.order.data.Order;
+import com.hq.orderRestClient.service.order.data.OrderTypeEnum;
+import com.hq.orderRestClient.service.order.data.PreStoreCardItem;
+import com.hq.storeMS.service.common.OperateTips;
+import com.hq.storeMS.service.leaguerDetail.apiData.PreStoreCardReduceCountForm;
+import com.hq.storeMS.service.leaguerDetail.data.LeaguerDetail;
+import com.hq.storeMS.service.leaguerDetail.data.LeaguerDetailBeanHelper;
+import com.zenmind.common.hotSwap.HotSwap;
+
+public class ReducePreStoreCardCountFilter {
+	
+	public static ReducePreStoreCardCountFilter getInstance() {
+		return HotSwap.getInstance().getSingleton(ReducePreStoreCardCountFilter.class);
+	}
+	
+	public OperateTips updateInfo(Order order, LeaguerDetail leaguer){
+		OperateTips operateTips = OperateTips.newInstance(true);
+		if(order.getOrderType() == OrderTypeEnum.PURCHASE.ordinal()){//购买消费
+			if(!reduceCount(leaguer, order.getPreStoreCardItems())) {
+				operateTips.setSuccess(false);
+				operateTips.setTips("客户预存卡次数不够抵消");
+				return operateTips;
+			}
+		}
+		return operateTips;
+	}
+	
+	//次卡抵扣项目
+	private boolean reduceCount(LeaguerDetail leaguer, List<PreStoreCardItem> items){
+		for (PreStoreCardItem item : items) {
+			PreStoreCardReduceCountForm inputForm = PreStoreCardReduceCountForm.newInstance();
+			inputForm.setId(item.getPreStoreCardId());
+			inputForm.setCount(item.getCount());
+			inputForm.setItemType(item.getItemType());
+			inputForm.setPgId(item.getPgId());
+			if(!LeaguerDetailBeanHelper.getInstance().reducePreStoreCardCount(leaguer, inputForm)){
+				return false;
+			}
+		}
+		return true;
+	}
+}

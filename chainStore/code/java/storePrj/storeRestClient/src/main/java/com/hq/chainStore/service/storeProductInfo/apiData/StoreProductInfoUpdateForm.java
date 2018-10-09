@@ -1,0 +1,160 @@
+package com.hq.chainStore.service.storeProductInfo.apiData;
+
+import java.util.List;
+
+import com.hq.chainStore.service.excel.data.ExcelProduct;
+import com.hq.chainStore.service.storeProductInfo.data.ProductInfoTmp;
+
+public class StoreProductInfoUpdateForm {
+
+	private int updateType;
+
+	private long storeId;
+
+	private AddProductInfoData addProductInfoData;
+	private List<ExcelProduct> addListFromExcel;// 从excel批量导入项目
+	private List<ProductInfoTmp> addListFromStore;// 从店铺批量导入项目
+	private UpdateProductInfoData updateProductInfoData;
+	private RemoveProductInfoData removeProductInfoData;
+	private UpdateProductStateData updateProductStateData;
+	private BatchUpdateProductStateData batchUpdateProductStateData;// 批量上下架
+
+	private AddProductTypeData addProductTypeData;
+	private UpdateProductTypeData updateProductTypeData;
+	private RemoveProductTypeData removeProductTypeData;
+
+	private AddProductToTopData addProductToTopData;
+	private CancelProductFromTopData cancelProductFromTopData;
+
+	public static StoreProductInfoUpdateForm newInstance() {
+		return new StoreProductInfoUpdateForm();
+	}
+
+	public int getUpdateType() {
+		return updateType;
+	}
+
+	public void setUpdateType(int updateType) {
+		this.updateType = updateType;
+	}
+
+	public void setUpdateTypeEnum(StoreProductInfoUpdateType updateType) {
+		this.updateType = updateType.ordinal();
+	}
+
+	public StoreProductInfoUpdateType getUpdateTypeEnum() {
+		return StoreProductInfoUpdateType.valueOf(this.updateType);
+	}
+
+	public AddProductInfoData getAddProductInfoData() {
+		return addProductInfoData;
+	}
+
+	public void setAddProductInfoData(AddProductInfoData addProductInfoData) {
+		this.addProductInfoData = addProductInfoData;
+	}
+
+	public UpdateProductInfoData getUpdateProductInfoData() {
+		return updateProductInfoData;
+	}
+
+	public void setUpdateProductInfoData(
+			UpdateProductInfoData updateProductInfoData) {
+		this.updateProductInfoData = updateProductInfoData;
+	}
+
+	public RemoveProductInfoData getRemoveProductInfoData() {
+		return removeProductInfoData;
+	}
+
+	public void setRemoveProductInfoData(
+			RemoveProductInfoData removeProductInfoData) {
+		this.removeProductInfoData = removeProductInfoData;
+	}
+
+	public UpdateProductStateData getUpdateProductStateData() {
+		return updateProductStateData;
+	}
+
+	public void setUpdateProductStateData(
+			UpdateProductStateData updateProductStateData) {
+		this.updateProductStateData = updateProductStateData;
+	}
+
+	public AddProductToTopData getAddProductToTopData() {
+		return addProductToTopData;
+	}
+
+	public void setAddProductToTopData(AddProductToTopData addProductToTopData) {
+		this.addProductToTopData = addProductToTopData;
+	}
+
+	public CancelProductFromTopData getCancelProductFromTopData() {
+		return cancelProductFromTopData;
+	}
+
+	public void setCancelProductFromTopData(
+			CancelProductFromTopData cancelProductFromTopData) {
+		this.cancelProductFromTopData = cancelProductFromTopData;
+	}
+
+	public AddProductTypeData getAddProductTypeData() {
+		return addProductTypeData;
+	}
+
+	public void setAddProductTypeData(AddProductTypeData addProductTypeData) {
+		this.addProductTypeData = addProductTypeData;
+	}
+
+	public UpdateProductTypeData getUpdateProductTypeData() {
+		return updateProductTypeData;
+	}
+
+	public void setUpdateProductTypeData(
+			UpdateProductTypeData updateProductTypeData) {
+		this.updateProductTypeData = updateProductTypeData;
+	}
+
+	public RemoveProductTypeData getRemoveProductTypeData() {
+		return removeProductTypeData;
+	}
+
+	public void setRemoveProductTypeData(
+			RemoveProductTypeData removeProductTypeData) {
+		this.removeProductTypeData = removeProductTypeData;
+	}
+
+	public BatchUpdateProductStateData getBatchUpdateProductStateData() {
+		return batchUpdateProductStateData;
+	}
+
+	public void setBatchUpdateProductStateData(
+			BatchUpdateProductStateData batchUpdateProductStateData) {
+		this.batchUpdateProductStateData = batchUpdateProductStateData;
+	}
+
+	public long getStoreId() {
+		return storeId;
+	}
+
+	public void setStoreId(long storeId) {
+		this.storeId = storeId;
+	}
+
+	public List<ExcelProduct> getAddListFromExcel() {
+		return addListFromExcel;
+	}
+
+	public void setAddListFromExcel(List<ExcelProduct> addListFromExcel) {
+		this.addListFromExcel = addListFromExcel;
+	}
+
+	public List<ProductInfoTmp> getAddListFromStore() {
+		return addListFromStore;
+	}
+
+	public void setAddListFromStore(List<ProductInfoTmp> addListFromStore) {
+		this.addListFromStore = addListFromStore;
+	}
+
+}

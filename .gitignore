@@ -1,0 +1,72 @@
+# Compiled class file 
+*.class
+bin/
+
+#zmDevHelper
+codeGen/
+codeGenTmpDir/
+!src/main/java/com/zenmind/codeGen/
+fieldInput
+
+# Log file 
+*.log
+
+# Eclipse Project files
+.classpath
+.project
+target/
+.settings/
+*.jar
+*.bak
+.metadata/
+.recommenders/
+RemoteSystemsTempFiles/
+
+.idea
+
+# Android Mac
+.gradle
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+/captures
+.externalNativeBuild
+
+chainStore/code/res/
+chainStore/code/Android/YMD/gradle/wrapper/gradle-wrapper.properties
+chainStore/code/Android/YMD/app/src/test/java/com/yml/saas/ExampleUnitTest.java
+*.jks
+
+deploy/
+
+node_modules
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+target/
+*.jar
+*.bak
+mvnw
+mvnw.cmd
+.mvn/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/build/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/

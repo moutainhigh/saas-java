@@ -1,0 +1,12 @@
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="ehcache.xsd">
+    
+    <cache name="userAutoId"
+           maxElementsInMemory="10000"
+           eternal="false"
+      	   overflowToDisk="false"
+      	   memoryStoreEvictionPolicy="LRU"
+           timeToLiveSeconds="36000">
+    </cache>
+
+</ehcache>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration scan="true" scanPeriod="10 seconds">
+
+    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+    <springProperty scope="context" name="springAppName" source="spring.application.name"/>
+    <property name="LOG_FILE" value="${springAppName}"/>
+    <springProperty scope="context" name="logLevel" source="log.level"/>
+    
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/${LOG_FILE}.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>logs/${LOG_FILE}-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+			<!-- each file should be at most 100MB, keep 60 days worth of history, 
+				but at most 5GB -->
+			<maxFileSize>100MB</maxFileSize>
+			<maxHistory>14</maxHistory>
+			<totalSizeCap>5GB</totalSizeCap>
+		</rollingPolicy>
+		<encoder>
+			<pattern>${FILE_LOG_PATTERN}</pattern>
+		</encoder>
+	</appender>
+	
+    
+    <root level="${logLevel}">
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="FILE" />
+	</root>
+</configuration>
